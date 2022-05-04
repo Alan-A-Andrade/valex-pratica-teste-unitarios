@@ -8,3 +8,9 @@ export async function getById(id: number) {
 
   return employee;
 }
+
+const employeeService = {
+  getById
+}
+
+export default employeeService

@@ -25,12 +25,12 @@ export interface Card {
 export type CardInsertData = Omit<Card, "id">;
 export type CardUpdateData = Partial<Card>;
 
-export async function find() {
+async function find() {
   const result = await connection.query<Card>("SELECT * FROM cards");
   return result.rows;
 }
 
-export async function findById(id: number) {
+async function findById(id: number) {
   const result = await connection.query<Card, [number]>(
     "SELECT * FROM cards WHERE id=$1",
     [id]
@@ -39,7 +39,7 @@ export async function findById(id: number) {
   return result.rows[0];
 }
 
-export async function findByTypeAndEmployeeId(
+async function findByTypeAndEmployeeId(
   type: TransactionTypes,
   employeeId: number
 ) {
@@ -51,7 +51,7 @@ export async function findByTypeAndEmployeeId(
   return result.rows[0];
 }
 
-export async function findByCardDetails(
+async function findByCardDetails(
   number: string,
   cardholderName: string,
   expirationDate: string
@@ -67,7 +67,7 @@ export async function findByCardDetails(
   return result.rows[0];
 }
 
-export async function insert(cardData: CardInsertData) {
+async function insert(cardData: CardInsertData) {
   const {
     employeeId,
     number,
@@ -102,7 +102,7 @@ export async function insert(cardData: CardInsertData) {
   );
 }
 
-export async function update(id: number, cardData: CardUpdateData) {
+async function update(id: number, cardData: CardUpdateData) {
   const { objectColumns: cardColumns, objectValues: cardValues } =
     mapObjectToUpdateQuery({
       object: cardData,
@@ -119,6 +119,19 @@ export async function update(id: number, cardData: CardUpdateData) {
   );
 }
 
-export async function remove(id: number) {
+async function remove(id: number) {
   connection.query<any, [number]>("DELETE FROM cards WHERE id=$1", [id]);
 }
+
+const cardRepository = {
+  remove,
+  update,
+  insert,
+  find,
+  findById,
+  findByCardDetails,
+  findByTypeAndEmployeeId,
+
+}
+
+export default cardRepository
