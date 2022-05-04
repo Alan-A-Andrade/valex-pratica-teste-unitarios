@@ -60,6 +60,7 @@ describe("unit test function create", () => {
     jest.spyOn(cardRepository, 'insert').mockResolvedValue();
 
     expect(async () => await cardService.create("nanaminha", 0, 'restaurant')).resolves
+    expect(cardRepository.insert).toBeCalled
   });
 
 });
