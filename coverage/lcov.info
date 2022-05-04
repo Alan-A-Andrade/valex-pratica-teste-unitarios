@@ -87,8 +87,8 @@ FN:107,getById
 FN:115,validateCVCOrFail
 FN:122,validatePasswordOrFail
 FNF:11
-FNH:0
-FNDA:0,create
+FNH:1
+FNDA:1,create
 FNDA:0,generateCardData
 FNDA:0,getMiddleNameInitial
 FNDA:0,filterTwoLetterMiddleName
@@ -99,11 +99,11 @@ FNDA:0,validateExpirationDateOrFail
 FNDA:0,getById
 FNDA:0,validateCVCOrFail
 FNDA:0,validatePasswordOrFail
-DA:13,0
-DA:15,0
-DA:17,0
-DA:21,0
-DA:22,0
+DA:13,1
+DA:15,1
+DA:17,1
+DA:21,1
+DA:22,1
 DA:25,0
 DA:27,0
 DA:37,0
@@ -148,8 +148,8 @@ DA:124,0
 DA:125,0
 DA:129,1
 LF:48
-LH:1
-BRDA:21,0,0,0
+LH:6
+BRDA:21,0,0,1
 BRDA:56,1,0,0
 BRDA:66,2,0,0
 BRDA:87,3,0,0
@@ -159,7 +159,7 @@ BRDA:109,6,0,0
 BRDA:117,7,0,0
 BRDA:124,8,0,0
 BRF:9
-BRH:0
+BRH:1
 end_of_record
 TN:
 SF:src/services/companyService.ts

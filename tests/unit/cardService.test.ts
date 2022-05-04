@@ -11,38 +11,6 @@ import { create } from 'domain';
 //mock type
 
 describe("unit test function create", () => {
-  it("should throw erro if user is already in db", async () => {
-
-    jest.spyOn(companyService, 'validateApiKeyOrFail').mockResolvedValue();
-
-    jest.spyOn(employeeService, 'getById').mockResolvedValue({
-      id: 1,
-      fullName: "Fulaninho Beltrano",
-      cpf: "12345678910",
-      email: "fulano@mail.com",
-      companyId: 1,
-    });
-
-    const card: Card = {
-      id: 1,
-      employeeId: 1,
-      number: "string",
-      cardholderName: "string",
-      securityCode: "string",
-      expirationDate: "string",
-      password: "string",
-      isVirtual: false,
-      originalCardId: null,
-      isBlocked: false,
-      type: 'education',
-    }
-
-    jest.spyOn(cardRepository, 'findByTypeAndEmployeeId').mockResolvedValue(card);
-
-    expect(async () => await cardService.create("nanaminha", 0, 'restaurant')).toThrowError
-
-  });
-
   it("should create a card if everything work", async () => {
 
     jest.spyOn(companyService, 'validateApiKeyOrFail').mockResolvedValue();
@@ -59,8 +27,8 @@ describe("unit test function create", () => {
 
     jest.spyOn(cardRepository, 'insert').mockResolvedValue();
 
-    expect(async () => await cardService.create("nanaminha", 0, 'restaurant')).resolves
-    expect(cardRepository.insert).toBeCalled
+    const result = await cardService.create("nanaminha", 0, 'restaurant')
+    expect(result).toBe(undefined)
   });
 
 });
